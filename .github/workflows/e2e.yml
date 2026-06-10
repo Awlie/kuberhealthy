@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version: '1.26.4'
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build container
         id: build
         run: |
@@ -27,7 +27,7 @@ jobs:
           echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
       - name: Export image
         run: docker save ${{ steps.build.outputs.image }} -o kuberhealthy.tar
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kh-image
           path: kuberhealthy.tar
@@ -39,11 +39,11 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version: '1.26.4'
-      - uses: actions/checkout@v4
-      - uses: engineerd/setup-kind@v0.5.0
+      - uses: actions/checkout@v6
+      - uses: engineerd/setup-kind@v0.6.0
         with:
-          version: "v0.20.0"
-      - uses: actions/download-artifact@v4
+          version: "v0.32.0"
+      - uses: actions/download-artifact@v8
         with:
           name: kh-image
       - name: Load image into kind
