@@ -1416,7 +1416,7 @@ func (kh *Kuberhealthy) deletePod(check *khapi.HealthCheck, pod *corev1.Pod, eve
 	}
 
 	if kh.Recorder != nil {
-		kh.Recorder.Eventf(check, eventType, reason, message)
+		kh.Recorder.Eventf(check, eventType, reason, "%s", message)
 	}
 
 	return nil
